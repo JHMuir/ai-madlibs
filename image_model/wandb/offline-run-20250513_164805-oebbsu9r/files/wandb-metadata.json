@@ -1,0 +1,58 @@
+{
+  "os": "Windows-10-10.0.26100-SP0",
+  "python": "CPython 3.11.11",
+  "startedAt": "2025-05-13T23:48:05.625131Z",
+  "args": [
+    "--pretrained_model_name_or_path=CompVis/stable-diffusion-v1-4",
+    "--dataset_name=./madlibs_images",
+    "--caption_column=text",
+    "--resolution=512",
+    "--random_flip",
+    "--train_batch_size=1",
+    "--num_train_epochs=100",
+    "--checkpointing_steps=5000",
+    "--learning_rate=1e-04",
+    "--lr_scheduler=constant",
+    "--lr_warmup_steps=0",
+    "--seed=42",
+    "--output_dir=sd-madlibs-model-lora",
+    "--validation_prompt=character playing the guitar",
+    "--report_to=wandb"
+  ],
+  "program": "C:\\Users\\jorda\\Documents\\Playground\\ai-madlibs\\image_model\\train_text_to_image_lora.py",
+  "codePath": "image_model\\train_text_to_image_lora.py",
+  "git": {
+    "remote": "git@github.com:JHMuir/ai-madlibs.git",
+    "commit": "a110843d7ef2527e38c2d72ff23a37ad81b3af6a"
+  },
+  "root": "C:\\Users\\jorda\\Documents\\Playground\\ai-madlibs\\image_model",
+  "host": "LAPTOP-M11",
+  "executable": "C:\\Users\\jorda\\miniconda3\\envs\\madlibs\\python.exe",
+  "codePathLocal": "train_text_to_image_lora.py",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "1002502615040",
+      "used": "478484934656"
+    }
+  },
+  "memory": {
+    "total": "34065952768"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 16
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
+      "memoryTotal": "4294967296",
+      "cudaCores": 2560,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.5"
+}
