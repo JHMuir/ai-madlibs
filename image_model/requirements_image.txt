@@ -9,6 +9,6 @@ torchaudio
 --index-url https://download.pytorch.org/whl/cu126
 peft
 wandb
-xformers 
+xformers
 bitsandbytes
 datasets
