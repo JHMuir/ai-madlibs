@@ -1,0 +1,50 @@
+from comic_prompt import ComicPromptModule
+from madlibs_template import MadLibsTemplateModule
+import dspy
+import re
+from pprint import pprint
+
+
+class MadLibsApp:
+    def __init__(self, api_key: str):
+        lm = dspy.LM(
+            model="gemini/gemini-2.0-flash",
+            api_key=api_key,
+            cache=False,
+            temperature=1.0,
+        )
+        dspy.configure(lm=lm)
+        self.madlibs_generator = MadLibsTemplateModule()
+        self.comicprompt_generator = ComicPromptModule()
+
+    def generate_madlib(self, topic: str):
+        result = self.madlibs_generator(topic)
+        template, placeholder_words = result.template, result.word_types
+        pprint(template)
+        pattern = r"\{([^}]+)\}"
+        word_types_needed = re.findall(pattern, template)
+        if placeholder_words != word_types_needed:
+            raise Exception("Mismatch between words extracted and words needed")
+        user_inputs = self.collect_user_inputs(placeholder_words=placeholder_words)
+        completed_madlib = self.fill_template(
+            template=template,
+            placeholder_words=placeholder_words,
+            user_inputs=user_inputs,
+        )
+        comic_prompt = self.comicprompt_generator(completed_madlib)
+        return completed_madlib, comic_prompt
+
+    def collect_user_inputs(self, placeholder_words):
+        user_inputs = []
+        for word in placeholder_words:
+            user_input = input(f"Enter a/an {word}: ")
+            user_inputs.append(user_input)
+        return user_inputs
+
+    def fill_template(self, template, placeholder_words, user_inputs):
+        completed = template
+
+        for word, user_input in zip(placeholder_words, user_inputs):
+            placeholder = f"{{{word}}}"
+            completed = completed.replace(placeholder, user_input, 1)
+        return completed

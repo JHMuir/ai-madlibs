@@ -1,23 +1,19 @@
-import os
-import uvicorn
 from dotenv import load_dotenv
+import os
 
-import dspy
+from madlibs_app import MadLibsApp
 
-load_dotenv()
+if __name__ == "__main__":
+    load_dotenv()
+    api_key = os.environ["GOOGLE_API_KEY"]
 
-api_key = os.environ["GOOGLE_API_KEY"]
+    app = MadLibsApp(api_key=api_key)
 
-lm = dspy.LM(model="gemini/gemini-2.0-flash", api_key=api_key)
-dspy.configure(lm=lm)
+    topic = input("Enter a topic: ")
 
-
-class MadlibsApp:
-    def __init__(self):
-        pass
-
-    def _setup_routes(self):
-        pass
-
-    def run(self, host: str = "127.0.0.1", port: int = 8000) -> None:
-        uvicorn.run(self.app, host=host, port=port)
+    try:
+        madlib, comic_prompt = app.generate_madlib(topic=topic)
+        print(madlib)
+        print(comic_prompt)
+    except Exception as e:
+        print(f"Error: {e}")
