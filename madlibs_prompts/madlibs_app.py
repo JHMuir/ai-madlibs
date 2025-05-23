@@ -5,6 +5,10 @@ import re
 from pprint import pprint
 
 
+class MadlibsMismatchException(Exception):
+    pass
+
+
 class MadLibsApp:
     def __init__(self, api_key: str):
         lm = dspy.LM(
@@ -24,7 +28,9 @@ class MadLibsApp:
         pattern = r"\{([^}]+)\}"
         word_types_needed = re.findall(pattern, template)
         if placeholder_words != word_types_needed:
-            raise Exception("Mismatch between words extracted and words needed")
+            raise MadlibsMismatchException(
+                "Mismatch between words extracted and words needed"
+            )
         user_inputs = self.collect_user_inputs(placeholder_words=placeholder_words)
         completed_madlib = self.fill_template(
             template=template,
