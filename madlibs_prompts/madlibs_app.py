@@ -3,6 +3,9 @@ from .madlibs_template import MadLibsTemplateModule
 import dspy
 import re
 from pprint import pprint
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class MadlibsMismatchException(Exception):
@@ -11,7 +14,7 @@ class MadlibsMismatchException(Exception):
 
 class MadLibsApp:
     def __init__(self, api_key: str):
-        print("Initializing MadLibsApp......")
+        logging.info("Initializing MadLibsApp......")
         lm = dspy.LM(
             # Change the model name here to your specified to provider
             # For example, to change to OpenAI, change it to model="openai/gpt-4o"
@@ -24,7 +27,7 @@ class MadLibsApp:
         dspy.configure(lm=lm, api_key=api_key)
         self.madlibs_generator = MadLibsTemplateModule()
         self.comicprompt_generator = ComicPromptModule()
-        print("MadLibsApp successfully initialized")
+        logging.info("MadLibsApp successfully initialized")
 
     def generate_madlib(self, topic: str):
         result = self.madlibs_generator(topic)
@@ -33,6 +36,7 @@ class MadLibsApp:
         pattern = r"\{([^}]+)\}"
         word_types_needed = re.findall(pattern, template)
         if placeholder_words != word_types_needed:
+            logging.error("Mismatch detected between words extracted and words needed")
             raise MadlibsMismatchException(
                 "Mismatch between words extracted and words needed"
             )

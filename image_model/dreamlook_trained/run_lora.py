@@ -1,17 +1,18 @@
 import torch
 from diffusers import StableDiffusionXLPipeline
+import logging
 
 
 class MadLibsLoRA:
     def __init__(self, local_lora_path: str):
-        print("Intializing MadLibsLoRA....")
+        logging.info("Intializing MadLibsLoRA....")
         self.pipeline = StableDiffusionXLPipeline.from_pretrained(
             "stabilityai/stable-diffusion-xl-base-1.0",
             torch_dtype=torch.float16,
             use_safetensors=True,
         )
         self.pipeline.load_lora_weights(local_lora_path)
-        print("MadLibsLoRA successfully initialized")
+        logging.info("MadLibsLoRA successfully initialized")
 
     def run(self, prompt: str, save_path: str = "output.txt"):
         image = self.pipeline(
