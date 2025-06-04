@@ -1,5 +1,5 @@
-from comic_prompt import ComicPromptModule
-from madlibs_template import MadLibsTemplateModule
+from .comic_prompt import ComicPromptModule
+from .madlibs_template import MadLibsTemplateModule
 import dspy
 import re
 from pprint import pprint
@@ -11,6 +11,7 @@ class MadlibsMismatchException(Exception):
 
 class MadLibsApp:
     def __init__(self, api_key: str):
+        print("Initializing MadLibsApp......")
         lm = dspy.LM(
             model="gemini/gemini-2.0-flash",
             api_key=api_key,
@@ -20,6 +21,7 @@ class MadLibsApp:
         dspy.configure(lm=lm)
         self.madlibs_generator = MadLibsTemplateModule()
         self.comicprompt_generator = ComicPromptModule()
+        print("MadLibsApp successfully initialized")
 
     def generate_madlib(self, topic: str):
         result = self.madlibs_generator(topic)
