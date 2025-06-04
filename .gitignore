@@ -1,4 +1,4 @@
-image_model\dreamlook_trained\models\ckpt_lora_step1500_ukj_style.safetensors
+ckpt_lora_step1500_ukj_style.safetensors
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
