@@ -13,12 +13,15 @@ class MadLibsApp:
     def __init__(self, api_key: str):
         print("Initializing MadLibsApp......")
         lm = dspy.LM(
+            # Change the model name here to your specified to provider
+            # For example, to change to OpenAI, change it to model="openai/gpt-4o"
+            # To view all providers, navigate to https://docs.litellm.ai/docs/providers
             model="gemini/gemini-2.0-flash",
             api_key=api_key,
             cache=False,
             temperature=1.0,
         )
-        dspy.configure(lm=lm)
+        dspy.configure(lm=lm, api_key=api_key)
         self.madlibs_generator = MadLibsTemplateModule()
         self.comicprompt_generator = ComicPromptModule()
         print("MadLibsApp successfully initialized")
