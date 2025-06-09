@@ -19,3 +19,14 @@ class MadLibsLoRA:
             prompt=f"4 panel comic in ukj style:\n {prompt}", num_inference_steps=30
         ).images[0]
         image.save(save_path)
+
+
+# 1: Prewritten daily madlib -> spaces. 5-6 predetemined spaces
+# 2: Prewritten FULL madlib -> finds 5-6 adj, nouns, verbs, replaces with spaces
+# 3: Classic madlibs -> words only, no context
+# 4: Fully generated
+#
+# -> Image model
+# "Every morning, the [adjective] [noun] jumps over the [adjective] [animal] to get to the [place] before breakfast."
+#
+#

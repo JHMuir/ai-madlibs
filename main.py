@@ -2,7 +2,6 @@ from dotenv import load_dotenv
 import os
 import logging
 from madlibs_prompts.madlibs_app import MadLibsApp
-from image_model.dreamlook_trained.run_lora import MadLibsLoRA
 
 
 def setup_logging(level=logging.INFO):
@@ -25,9 +24,9 @@ if __name__ == "__main__":
 
     logger.info("Starting main process")
     app = MadLibsApp(api_key=api_key)
-    lora = MadLibsLoRA(
-        local_lora_path="image_model\dreamlook_trained\models\lora_ukj_style.safetensors"
-    )
+    # lora = MadLibsLoRA(
+    #     local_lora_path="image_model\dreamlook_trained\models\lora_ukj_style.safetensors"
+    # )
 
     topic = input("Enter a topic: ")
 
