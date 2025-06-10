@@ -12,7 +12,7 @@ class MadlibsMismatchException(Exception):
     pass
 
 
-class MadLibsApp:
+class MadLibsGenerator:
     def __init__(self, api_key: str):
         logging.info("Initializing MadLibsApp......")
         lm = dspy.LM(

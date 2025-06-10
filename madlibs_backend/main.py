@@ -1,7 +1,10 @@
 from dotenv import load_dotenv
 import os
 import logging
-from madlibs_prompts.madlibs_app import MadLibsApp
+
+# from madlibs_module.madlibs_generator import MadLibsGenerator
+# from madlibs_module.madlibs_image import MadLibsImage
+from madlibs_module.madlibs_api import MadLibsAPI
 
 
 def setup_logging(level=logging.INFO):
@@ -23,16 +26,19 @@ if __name__ == "__main__":
     api_key = os.environ["GOOGLE_API_KEY"]
 
     logger.info("Starting main process")
-    app = MadLibsApp(api_key=api_key)
-    # lora = MadLibsLoRA(
-    #     local_lora_path="image_model\dreamlook_trained\models\lora_ukj_style.safetensors"
-    # )
+    api = MadLibsAPI(api_key=api_key)
+    api.run()
+    # app = MadLibsGenerator(api_key=api_key)
+    # # lora = MadLibsLoRA(
+    # #     local_lora_path="image_model\dreamlook_trained\models\lora_ukj_style.safetensors"
+    # # )
+    # image_gen = MadLibsImage(api_key=api_key)
+    # topic = input("Enter a topic: ")
 
-    topic = input("Enter a topic: ")
-
-    madlib, comic_prompt = app.generate_madlib(topic=topic)
-    print(madlib)
-    print(comic_prompt.comic_prompt)
+    # madlib, comic_prompt = app.generate_madlib(topic=topic)
+    # print(madlib)
+    # print(comic_prompt.comic_prompt)
+    # image_gen.generate(madlib)
     # Uncomment this if you'd like to run lora
     # Beware: there are still a ton of issues that I need to fix. It will most likely not work right, if at all
     # lora.run(prompt=madlib)
