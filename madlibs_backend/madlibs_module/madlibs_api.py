@@ -199,4 +199,4 @@ class MadLibsAPI:
     def run(self):
         import uvicorn
 
-        uvicorn.run(self.app, host="0.0.0.0", port=8000)
+        uvicorn.run(self.app, host="localhost", port=8000)
