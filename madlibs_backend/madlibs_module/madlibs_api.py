@@ -8,7 +8,7 @@ import logging
 import uuid
 from pathlib import Path
 from madlibs_module.madlibs_generator import MadLibsGenerator
-from madlibs_image import MadLibsImage
+from madlibs_module.madlibs_image import MadLibsImage
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +75,7 @@ class MadLibsAPI:
             logger.info(f"Generating template for topic: {request.topic}")
 
             # Generate the template using your existing code
-            result = self.text_generator.generate_madlib(request.topic)
+            result = self.text_generator.madlibs_generator(request.topic)
 
             # Create unique ID for this template
             template_id = str(uuid.uuid4())
