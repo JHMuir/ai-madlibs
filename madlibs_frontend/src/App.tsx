@@ -119,11 +119,9 @@ const MadLibsApp: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-8 pt-8">
           <h1 className="text-6xl font-bold text-white mb-2 drop-shadow-lg flex items-center justify-center gap-3">
-            <Sparkles className="animate-pulse" />
-            MadLibs Magic
-            <Sparkles className="animate-pulse" />
+            MadLibs Generator
           </h1>
-          <p className="text-xl text-white/90 drop-shadow">Create silly stories with your imagination!</p>
+          <p className="text-xl text-white/90 drop-shadow">Create stories with your imagination!</p>
         </div>
 
         {/* Main Content Card */}
@@ -135,7 +133,7 @@ const MadLibsApp: React.FC = () => {
               <div className="text-center">
                 <BookOpen className="w-16 h-16 mx-auto text-purple-600 mb-4" />
                 <h2 className="text-3xl font-bold text-gray-800 mb-2">What's Your Story About?</h2>
-                <p className="text-gray-600">Pick any topic you like - animals, space, pirates, or anything!</p>
+                <p className="text-gray-600">Pick any topic you like!</p>
               </div>
 
               <div className="max-w-md mx-auto">
@@ -143,8 +141,8 @@ const MadLibsApp: React.FC = () => {
                   type="text"
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
-                  placeholder="Enter a topic (e.g., 'dinosaurs', 'pizza party')"
-                  className="w-full px-6 py-4 text-lg border-3 border-purple-300 rounded-2xl focus:outline-none focus:border-purple-500 transition-colors"
+                  placeholder="Enter your topic here!"
+                  className="w-full px-6 py-4 text-lg border-3 border-purple-300 rounded-2xl focus:outline-none focus:border-purple-500 transition-colors placeholder:text-center"
                   onKeyPress={(e) => e.key === 'Enter' && topic && generateTemplate()}
                 />
 
@@ -179,7 +177,7 @@ const MadLibsApp: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-96 overflow-y-auto pr-2">
                 {template.word_types.map((wordType, index) => (
-                  <div key={index} className="transform transition-all duration-200 hover:scale-105">
+                  <div key={index} className="transform transition-all duration-200">
                     <label className="block text-sm font-bold text-purple-700 mb-1 capitalize">
                       {wordType}
                     </label>
